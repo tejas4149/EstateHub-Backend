@@ -7,10 +7,10 @@ import {
   getPropertyById,
 } from "../controllers/propertyController.js";
 
-const PropertyRoutes = express.Router();
+const router = express.Router();
 
-PropertyRoutes.get("/", getProperties);
-PropertyRoutes.get("/:id", getPropertyById);
-PropertyRoutes.post("/", protect, upload.array("images", 5), createProperty);
+router.get("/", getProperties);
+router.get("/:id", getPropertyById);
+router.post("/", protect, upload.array("images", 5), createProperty);
 
-export default PropertyRoutes;
+export default router;

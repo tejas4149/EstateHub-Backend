@@ -4,10 +4,6 @@ import cloudinary from "../config/cloudinary.js";
 export const createProperty = async (req, res) => {
   const { title, price, city, type, bhk, purpose } = req.body;
 
-  const uploadPromises = req.files.map((file) =>
-    cloudinary.v2.uploader.upload_stream({ resource_type: "image" })
-  );
-
   const imageUrls = [];
 
   for (const file of req.files) {
