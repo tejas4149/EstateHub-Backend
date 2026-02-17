@@ -1,0 +1,71 @@
+### Variables
+@baseUrl = http://localhost:5000/api
+@token = your_jwt_token_here
+
+### Health Check
+GET http://localhost:5000/health
+
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "password": "password123",
+  "role": "user"
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### Get All Properties
+GET {{baseUrl}}/properties?page=1&limit=10&city=New York
+
+### Get Featured Properties
+GET {{baseUrl}}/properties/featured
+
+### Create Property (Protected)
+POST {{baseUrl}}/properties
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Test Property",
+  "description": "This is a test property",
+  "price": 300000,
+  "type": "sale",
+  "propertyType": "house",
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "area": 2000,
+  "location": {
+    "address": "789 Test St",
+    "city": "Test City",
+    "state": "TS"
+  }
+}
+
+### Get User Profile
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+### Save Property
+POST {{baseUrl}}/users/save-property/PROPERTY_ID
+Authorization: Bearer {{token}}
+
+### Send Message
+POST {{baseUrl}}/messages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "propertyId": "PROPERTY_ID",
+  "content": "I'm interested in this property"
+}

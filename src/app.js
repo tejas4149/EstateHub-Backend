@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
@@ -20,7 +20,7 @@ dotenv.config();
 const app = express();
 
 // Security middleware
-app.use(helmet());
+// app.use(helmet());
 
 // CORS configuration
 app.use(cors({

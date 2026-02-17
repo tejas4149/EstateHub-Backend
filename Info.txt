@@ -1,0 +1,120 @@
+API Endpoints Summary
+Authentication
+POST /api/auth/register - Register new user
+
+POST /api/auth/login - Login user
+
+GET /api/auth/me - Get current user
+
+PUT /api/auth/updatepassword - Update password
+
+Properties
+GET /api/properties - Get all properties (with filters)
+
+GET /api/properties/featured - Get featured properties
+
+GET /api/properties/:id - Get single property
+
+POST /api/properties - Create property (protected)
+
+PUT /api/properties/:id - Update property (protected)
+
+DELETE /api/properties/:id - Delete property (protected)
+
+GET /api/properties/user/:userId - Get user's properties
+
+Users
+GET /api/users - Get all users (admin only)
+
+GET /api/users/:id - Get single user
+
+PUT /api/users/:id - Update user (protected)
+
+DELETE /api/users/:id - Delete user (admin only)
+
+POST /api/users/save-property/:propertyId - Save/unsave property
+
+GET /api/users/saved-properties - Get saved properties
+
+Messages
+POST /api/messages - Send message
+
+GET /api/messages - Get user's messages
+
+GET /api/messages/conversation/:userId/:propertyId - Get conversation
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "info": {
+    "name": "EstateHub API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"role\": \"seller\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "Get All Properties",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/properties?page=1&limit=10"
+          }
+        },
+        {
+          "name": "Create Property",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/properties",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Beautiful Family Home\",\n    \"description\": \"Spacious home with garden\",\n    \"price\": 450000,\n    \"type\": \"sale\",\n    \"propertyType\": \"house\",\n    \"bedrooms\": 4,\n    \"bathrooms\": 3,\n    \"area\": 2500,\n    \"location\": {\n        \"address\": \"123 Oak Street\",\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"zipCode\": \"78701\"\n    }\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
